@@ -151,6 +151,7 @@ def test(seed=0):
             # ゴールに到着したら色変更
             if player.position == lab.goal:
                 rec.set_color("red")
+                print("GOAL!", num)
         else:
             # ゴールに到着していたら、スタートへジャンプ
             player.restart()
