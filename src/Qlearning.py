@@ -199,9 +199,9 @@ def test(seed=0):
     print("start.")
     ani = animation.FuncAnimation(fig,
                                   update,
-                                  300,
+                                  200,
                                   fargs=(p, lab, rec, txts),
-                                  interval=30,
+                                  interval=50,
                                   repeat=False,
                                   )
     # ani.save("labylinth.mp4")
