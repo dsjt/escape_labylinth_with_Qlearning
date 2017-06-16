@@ -127,8 +127,9 @@ class Labyrinth(object):
             return True
 
 
-def test(seed=0):
-    np.random.seed(seed)
+def test_Qlearning(seed=None):
+    if seed is not None:
+        np.random.seed(seed)
 
     p = Player(name="pochi")
     lab = Labyrinth(size=(4, 4), reward=1)
@@ -176,22 +177,22 @@ def test(seed=0):
                       aspect='equal',
                       )
     ax.invert_yaxis()
-    rec = ax.add_patch(plt.Rectangle(
-        xy=(0, 0), width=1, height=1, fill=False,
-        lw=5, facecolor='black', edgecolor='black'))
     # rec = ax.add_patch(plt.Rectangle(
-    #     xy=(0, 0), width=1, height=1, fill=True,
+    #     xy=(0, 0), width=1, height=1, fill=False,
     #     lw=5, facecolor='black', edgecolor='black'))
+    rec = ax.add_patch(plt.Rectangle(
+        xy=(0, 0), width=1, height=1, fill=True,
+        lw=5, facecolor='black', edgecolor='black'))
 
     txts = []
 
-    for pos in range(p.opr.Q.shape[0]):
-        x = pos % lab.size[1] + 0.4
-        y = pos // lab.size[0] + 0.5
-        txts.append(ax.text(x + 0.4, y, "", fontsize=9))
-        txts.append(ax.text(x, y + 0.4, "", fontsize=9))
-        txts.append(ax.text(x - 0.4, y, "", fontsize=9))
-        txts.append(ax.text(x, y - 0.4, "", fontsize=9))
+    # for pos in range(p.opr.Q.shape[0]):
+    #     x = pos % lab.size[1] + 0.4
+    #     y = pos // lab.size[0] + 0.5
+    #     txts.append(ax.text(x + 0.4, y, "", fontsize=9))
+    #     txts.append(ax.text(x, y + 0.4, "", fontsize=9))
+    #     txts.append(ax.text(x - 0.4, y, "", fontsize=9))
+    #     txts.append(ax.text(x, y - 0.4, "", fontsize=9))
 
     ax.text(0.3, 0.53, "START", fontsize=13)
     ax.text(lab.size[1] - 0.67, lab.size[0] -
@@ -200,7 +201,7 @@ def test(seed=0):
     print("start.")
     ani = animation.FuncAnimation(fig,
                                   update,
-                                  200,
+                                  1000,
                                   fargs=(p, lab, rec, txts),
                                   interval=50,
                                   repeat=False,
